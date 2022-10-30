@@ -20,6 +20,14 @@ export default defineNuxtConfig({
 
   modules: [],
 
+  nitro: {
+    storage: {
+      redis: {
+        driver: 'redis',
+      },
+    },
+  },
+
   srcDir: 'app/',
 
   typescript: {
