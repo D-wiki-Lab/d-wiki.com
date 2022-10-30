@@ -28,6 +28,13 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    apiSecret: '',
+    public: {
+      apiBase: '',
+    },
+  },
+
   srcDir: 'app/',
 
   typescript: {
