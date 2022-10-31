@@ -18,7 +18,9 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: [],
+  modules: [
+    '@pinia/nuxt',
+  ],
 
   nitro: {
     storage: {
