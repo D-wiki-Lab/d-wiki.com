@@ -3,10 +3,12 @@ export const WalletChainType = {
 } as const;
 export type WalletChainType = typeof WalletChainType[keyof typeof WalletChainType];
 
-export const WalletNetworkType = {
+export const WalletAstarNetworkType = {
   astarNetwork: 'Astar Network',
 } as const;
-export type WalletNetworkType = typeof WalletNetworkType[keyof typeof WalletNetworkType];
+export type WalletAstarNetworkType = typeof WalletAstarNetworkType[keyof typeof WalletAstarNetworkType];
+
+export type WalletNetworkType = WalletAstarNetworkType;
 
 export type Wallet = {
   address: string[];
