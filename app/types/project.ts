@@ -16,6 +16,6 @@ export type Project = {
   }
   body: {
     contents: ProjectContent[];
-    links: Link[];
+    links: Omit<Link, 'target'>[];
   }
 };
