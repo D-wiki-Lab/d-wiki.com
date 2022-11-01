@@ -1,15 +1,17 @@
 import { RequireAtLeastOne } from './utils/requireAtLeastOne';
 import { Link } from './link';
 
-export type History = RequireAtLeastOne<{
+export type HistoryTmp = {
   id: string;
+  userId: string;
   projectId: string;
   contentId: string;
-  userId: string;
   content?: {
     title: string;
     body: string;
   }
   link?: Omit<Link, 'target'>;
   createdAt: number;
-}, 'content' | 'link'>;
+};
+
+export type History = RequireAtLeastOne<HistoryTmp, 'content' | 'link'>;
