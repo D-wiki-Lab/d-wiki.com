@@ -1,4 +1,5 @@
 import { Project as ProjectType, ProjectContent } from '~/types/project';
+import { History } from '~/types/history';
 import { Image } from '~/types/image';
 import { Link } from '~/types/link';
 
@@ -15,6 +16,7 @@ export default class Project implements ProjectClass {
     contents: ProjectContent[];
     links: Omit<Link, 'target'>[];
   }
+  history: History[];
 
   constructor(
     id: string,
@@ -23,6 +25,7 @@ export default class Project implements ProjectClass {
     startedAt: number,
     contents?: ProjectContent[],
     links?: Omit<Link, 'target'>[],
+    history?: History[],
   ) {
     this.id = id;
     this.name = name;
@@ -32,5 +35,6 @@ export default class Project implements ProjectClass {
       contents: contents || [],
       links: links || [],
     };
+    this.history = history || [];
   }
 }

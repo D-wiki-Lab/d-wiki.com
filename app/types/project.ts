@@ -1,3 +1,4 @@
+import { History } from './history';
 import { Image } from './image';
 import { Link } from './link';
 
@@ -18,4 +19,5 @@ export type Project = {
     contents: ProjectContent[];
     links: Omit<Link, 'target'>[];
   }
+  history: History[];
 };
