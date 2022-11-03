@@ -6,6 +6,11 @@ export type ProjectContent = {
   id: string;
   title: string;
   body: string;
+  order: number;
+};
+
+export type ProjectLink = Omit<Link, 'target'> & {
+  order: number;
 };
 
 export type Project = {
@@ -17,7 +22,7 @@ export type Project = {
   }
   body: {
     contents: ProjectContent[];
-    links: Omit<Link, 'target'>[];
+    links: ProjectLink[];
   }
   history: History[];
 };

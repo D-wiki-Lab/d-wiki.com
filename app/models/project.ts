@@ -1,7 +1,6 @@
-import { Project as ProjectType, ProjectContent } from '~/types/project';
+import { Project as ProjectType, ProjectContent, ProjectLink } from '~/types/project';
 import { History } from '~/types/history';
 import { Image } from '~/types/image';
-import { Link } from '~/types/link';
 
 type ProjectClass = ProjectType & {};
 
@@ -14,7 +13,7 @@ export default class Project implements ProjectClass {
   }
   body: {
     contents: ProjectContent[];
-    links: Omit<Link, 'target'>[];
+    links: ProjectLink[];
   }
   history: History[];
 
@@ -24,7 +23,7 @@ export default class Project implements ProjectClass {
     thumbnail: Image,
     startedAt: number,
     contents?: ProjectContent[],
-    links?: Omit<Link, 'target'>[],
+    links?: ProjectLink[],
     history?: History[],
   ) {
     this.id = id;
