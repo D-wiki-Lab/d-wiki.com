@@ -84,33 +84,68 @@ const project = new Project(
     ),
   ],
   [
-    // @ts-ignore
-    // Todo: fix type
     new History(
-      'content',
       'history-0',
       'official',
       'd-wiki',
-      'content-0',
-      {
-        title: 'About',
-        body: 'About の本文 2',
-      },
+      [
+        new ProjectContent(
+          'content-0',
+          'About',
+          'About の本文',
+          0,
+        ),
+        new ProjectContent(
+          'content-3',
+          'Roadmap',
+          'Roadmap の本文',
+          3,
+        ),
+      ],
+      [
+        new ProjectLink(
+          'Site',
+          'https://d-wiki.com/',
+          0,
+        ),
+        new ProjectLink(
+          'Twitter',
+          'https://twitter.com/',
+          1,
+        ),
+      ],
       1,
     ),
-    // @ts-ignore
-    // Todo: fix type
     new History(
-      'content',
-      'history-0',
+      'history-1',
       'official',
       'd-wiki',
-      'content-0',
-      new ProjectLink(
-        'Site',
-        'https://d-wiki.com/',
-        0,
-      ),
+      [
+        new ProjectContent(
+          'content-0',
+          'About',
+          'About の本文',
+          0,
+        ),
+        new ProjectContent(
+          'content-3',
+          'Roadmap',
+          'Roadmap の本文',
+          3,
+        ),
+      ],
+      [
+        new ProjectLink(
+          'Site',
+          'https://d-wiki.com/',
+          0,
+        ),
+        new ProjectLink(
+          'Twitter',
+          'https://twitter.com/',
+          1,
+        ),
+      ],
       1,
     ),
   ],
