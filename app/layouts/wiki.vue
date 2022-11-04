@@ -5,6 +5,7 @@
     <div class="LayoutWiki-section">
       <div class="LayoutWiki-container">
         <div class="LayoutWiki-first">
+          <NavAside :toc="toc" />
         </div>
         <div class="LayoutWiki-second">
           <slot />
@@ -14,6 +15,20 @@
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import Toc from '~/models/toc';
+
+const toc: Toc[] = [
+  new Toc('about', 'About'),
+  new Toc('mint-info', 'Mint Info'),
+  new Toc('team', 'Team'),
+  new Toc('roadmap', 'Roadmap'),
+  new Toc('utility', 'Utility'),
+  new Toc('other', 'Other'),
+  new Toc('links', 'Links'),
+];
+</script>
 
 <style lang="scss" scoped>
 .LayoutWiki {
@@ -33,10 +48,10 @@
 
   > &-section {
     @include flex(center);
-    @include box-pd(64px, 20px, null, 20px);
+    @include box-pd(64px, 20px, 40px, 20px);
 
     > #{$root}-container {
-      @include flex(center);
+      @include flex(center, flex-start);
       @include box(100%);
 
       gap: 20px;
@@ -49,7 +64,13 @@
       }
 
       > #{$root}-second {
-        flex: 2;
+        flex: 4;
+      }
+
+      > #{$root}-first {
+        position: sticky;
+        top: 80px;
+        left: 0;
       }
     }
   }

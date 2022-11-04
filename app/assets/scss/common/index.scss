@@ -6,6 +6,7 @@ html {
   @include font(14px, 500, 1.6, 0.04em, $fontFamily-base);
 
   color: var(--color-text-primary);
+  scroll-behavior: smooth;
 
   @include mq(md) {
     @include font(16px);
