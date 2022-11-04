@@ -13,6 +13,8 @@
         <div class="LayoutWiki-third" />
       </div>
     </div>
+
+    <NavFooter />
   </div>
 </template>
 
