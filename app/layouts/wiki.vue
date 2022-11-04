@@ -22,12 +22,12 @@
 import Toc from '~/models/toc';
 
 const toc: Toc[] = [
-  new Toc('about', 'About'),
-  new Toc('mint-info', 'Mint Info'),
-  new Toc('team', 'Team'),
-  new Toc('roadmap', 'Roadmap'),
-  new Toc('utility', 'Utility'),
-  new Toc('other', 'Other'),
+  new Toc('content-0', 'About'),
+  new Toc('content-1', 'Mint Info'),
+  new Toc('content-2', 'Team'),
+  new Toc('content-3', 'Roadmap'),
+  new Toc('content-4', 'Utility'),
+  new Toc('content-5', 'Other'),
   new Toc('links', 'Links'),
 ];
 </script>

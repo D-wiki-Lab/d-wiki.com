@@ -9,6 +9,9 @@
       <ArticleBody
         :contents="project.body.contents"
         :links="project.body.links"
+      />
+      <HistoryPreviewIcon
+        v-if="project.history.length"
         :history="project.history"
       />
     </div>
@@ -16,6 +19,7 @@
 </template>
 
 <script lang="ts" setup>
+import History from '~/models/history';
 import Project from '~/models/project';
 import ProjectContent from '~/models/project-content';
 import ProjectLink from '~/models/project-link';
@@ -31,37 +35,37 @@ const project = new Project(
   1,
   [
     new ProjectContent(
-      'about',
+      'content-0',
       'About',
       'About の本文',
       0,
     ),
     new ProjectContent(
-      'mint-info',
+      'content-1',
       'Mint Info',
       'Mint Info の本文',
       1,
     ),
     new ProjectContent(
-      'team',
+      'content-2',
       'Team',
       'Team の本文',
       2,
     ),
     new ProjectContent(
-      'roadmap',
+      'content-3',
       'Roadmap',
       'Roadmap の本文',
       3,
     ),
     new ProjectContent(
-      'utility',
+      'content-4',
       'Utility',
       'Utility の本文',
       4,
     ),
     new ProjectContent(
-      'other',
+      'content-5',
       'Other',
       'Other の本文',
       5,
@@ -79,7 +83,37 @@ const project = new Project(
       1,
     ),
   ],
-  [],
+  [
+    // @ts-ignore
+    // Todo: fix type
+    new History(
+      'content',
+      'history-0',
+      'nancy',
+      'd-wiki',
+      'content-0',
+      {
+        title: 'About',
+        body: 'About の本文 2',
+      },
+      1,
+    ),
+    // @ts-ignore
+    // Todo: fix type
+    new History(
+      'content',
+      'history-0',
+      'nancy',
+      'd-wiki',
+      'content-0',
+      new ProjectLink(
+        'Site',
+        'https://d-wiki.com/',
+        0,
+      ),
+      1,
+    ),
+  ],
 );
 </script>
 
@@ -89,6 +123,10 @@ const project = new Project(
 
   > &-cont {
     @include box-mg(24px);
+
+    > .HistoryPreviewIcon {
+      @include box-mg(56px);
+    }
   }
 }
 </style>

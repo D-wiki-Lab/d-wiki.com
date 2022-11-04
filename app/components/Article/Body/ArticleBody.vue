@@ -37,12 +37,10 @@
 
 <script lang="ts" setup>
 import { ProjectContent, ProjectLink } from '~/types/project';
-import { History } from '~/types/history';
 
 interface Props {
   contents: ProjectContent[],
   links: ProjectLink[],
-  history: History[],
 }
 
 const props = defineProps<Props>();
