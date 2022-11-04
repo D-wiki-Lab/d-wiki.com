@@ -89,7 +89,7 @@ const project = new Project(
     new History(
       'content',
       'history-0',
-      'nancy',
+      'official',
       'd-wiki',
       'content-0',
       {
@@ -103,7 +103,7 @@ const project = new Project(
     new History(
       'content',
       'history-0',
-      'nancy',
+      'official',
       'd-wiki',
       'content-0',
       new ProjectLink(
