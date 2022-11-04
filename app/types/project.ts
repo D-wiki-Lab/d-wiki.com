@@ -16,7 +16,7 @@ export type ProjectLink = Omit<Link, 'target'> & {
 export type Project = {
   id: string;
   name: string;
-  thumbnail: Image;
+  thumbnail?: Image;
   meta: {
     startedAt: number;
   }

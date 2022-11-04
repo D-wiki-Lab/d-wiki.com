@@ -7,7 +7,7 @@ type ProjectClass = ProjectType & {};
 export default class Project implements ProjectClass {
   id: string;
   name: string;
-  thumbnail: Image;
+  thumbnail?: Image;
   meta: {
     startedAt: number;
   }
@@ -20,7 +20,7 @@ export default class Project implements ProjectClass {
   constructor(
     id: string,
     name: string,
-    thumbnail: Image,
+    thumbnail: Image | undefined,
     startedAt: number,
     contents?: ProjectContent[],
     links?: ProjectLink[],
