@@ -64,6 +64,10 @@ const props = defineProps<Props>();
   > * {
     @include box-mg(16px);
     @include font(null, 300, 2);
+
+    &:first-child {
+      @include box-mg(0 !important);
+    }
   }
 
   > h2 {

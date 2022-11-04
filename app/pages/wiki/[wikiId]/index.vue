@@ -122,7 +122,7 @@ const project = new Project(
   $root: &;
 
   > &-cont {
-    @include box-mg(24px);
+    @include box-mg(40px);
 
     > .HistoryPreviewIcon {
       @include box-mg(56px);
