@@ -10,7 +10,7 @@
         class="HistoryPreviewIcon-item"
       >
         <UserIcon
-          v-bind="profileImage(item.userId)"
+          v-bind="item.user.profileImage"
         />
       </li>
     </ul>
@@ -18,25 +18,13 @@
 </template>
 
 <script lang="ts" setup>
-import Image from '~/models/image';
 import { History } from '~/types/history';
-import { ImageFitType, ImageLoadingType } from '~/types/image';
 
 interface Props {
   history: History[],
 }
 
 const props = defineProps<Props>();
-
-const profileImage = (userId: string) => new Image(
-  `/user/${userId}/profile-image.jpg`,
-  `${userId}'s Profile Image`,
-  36,
-  36,
-  undefined,
-  ImageFitType.cover,
-  ImageLoadingType.lazy,
-);
 </script>
 
 <style lang="scss" scoped>

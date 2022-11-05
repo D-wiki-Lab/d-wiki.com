@@ -5,10 +5,12 @@
     </p>
     <div class="HistoryPreviewItem-cont">
       <UserIcon
-        v-bind="profileImage"
+        v-bind="props.user.profileImage"
+        :width="36"
+        :height="36"
       />
       <p class="HistoryPreviewItem-nm">
-        {{ props.userId }}
+        {{ props.user.name }}
       </p>
     </div>
   </li>
@@ -17,13 +19,13 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs';
 
-import Image from '~/models/image';
-import { ImageFitType, ImageLoadingType } from '~/types/image';
-import {ProjectContent, ProjectLink} from "~/types/project";
+import { ProjectContent, ProjectLink } from '~/types/project';
+import { UserPublic } from '~/types/user';
 
 interface Props {
   id: string;
   userId: string;
+  user: UserPublic,
   projectId: string;
   contents: ProjectContent[];
   links: ProjectLink[];
@@ -35,15 +37,6 @@ const props = defineProps<Props>();
 const createdAtDate = computed(() =>
   dayjs(props.createdAt).format('YYYY.MM.DD HH:mm')
 );
-const profileImage = computed(() => new Image(
-  `/user/${props.userId}/profile-image.jpg`,
-  `${props.userId}'s Profile Image`,
-  36,
-  36,
-  undefined,
-  ImageFitType.cover,
-  ImageLoadingType.lazy,
-));
 </script>
 
 <style lang="scss" scoped>

@@ -17,6 +17,8 @@ import History from '~/models/history';
 import Project from '~/models/project';
 import ProjectContent from '~/models/project-content';
 import ProjectLink from '~/models/project-link';
+import Image from "~/models/image";
+import {ImageFitType, ImageLoadingType} from "~/types/image";
 
 const project = new Project(
   'd-wiki',
@@ -77,6 +79,19 @@ const project = new Project(
     new History(
       'history-0',
       'official',
+      {
+        id: 'official',
+        name: 'Official',
+        profileImage: new Image(
+          '/user/official/profile-image.jpg',
+          'official\'s Profile Image',
+          160,
+          160,
+          undefined,
+          ImageFitType.cover,
+          ImageLoadingType.lazy,
+        ),
+      },
       'd-wiki',
       [
         new ProjectContent(
@@ -109,6 +124,19 @@ const project = new Project(
     new History(
       'history-1',
       'official-sub',
+      {
+        id: 'official-sub',
+        name: 'Official Sub',
+        profileImage: new Image(
+          '/user/official-sub/profile-image.jpg',
+          'official-sub\'s Profile Image',
+          160,
+          160,
+          undefined,
+          ImageFitType.cover,
+          ImageLoadingType.lazy,
+        ),
+      },
       'd-wiki',
       [
         new ProjectContent(

@@ -36,7 +36,7 @@ const props = defineProps<Props>();
   overflow: hidden;
 
   > ::v-deep(img) {
-    @include box(100%);
+    @include box(100%, auto);
 
     object-fit: cover;
   }
