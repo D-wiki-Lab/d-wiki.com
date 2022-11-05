@@ -118,7 +118,7 @@ const project = new Project(
     ),
     new History(
       'history-1',
-      'official',
+      'official-sub',
       'd-wiki',
       [
         new ProjectContent(
