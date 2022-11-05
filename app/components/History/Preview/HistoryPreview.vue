@@ -11,9 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import Image from '~/models/image';
 import { History } from '~/types/history';
-import { ImageFitType, ImageLoadingType } from '~/types/image';
 
 interface Props {
   history: History[],
