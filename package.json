@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-27769790.4b27db3",
     "nuxt": "3.0.0-rc.12",
     "sass": "^1.55.0",
     "typescript": "^4.8.4",
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.3",
+    "dayjs": "^1.11.6",
     "destyle.css": "^3.0.2"
   }
 }
