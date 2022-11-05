@@ -5,7 +5,7 @@ export type User = {
   id: string;
   name: string;
   wallet: Wallet[];
-  profileImage?: Omit<Image, 'width' | 'height'>;
+  profileImage: Omit<Image, 'width' | 'height'>;
 };
 
 export type UserPublic = Omit<User, 'wallet'>;

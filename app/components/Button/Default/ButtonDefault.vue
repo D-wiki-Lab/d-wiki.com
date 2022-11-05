@@ -4,7 +4,7 @@
     :is="componentIs"
     :disabled="props.disabled"
     :class="['ButtonDefault', ...classes]"
-    @cick="clickHandler"
+    @click="clickHandler"
   >
     <slot>
       Label
@@ -59,6 +59,10 @@ const clickHandler = () => {
 
   gap: 8px;
   border-radius: 4px;
+
+  &:disabled {
+    opacity: 0.4;
+  }
 
   &.-variant-contained {
     @include bg(var(--color-button-primary));

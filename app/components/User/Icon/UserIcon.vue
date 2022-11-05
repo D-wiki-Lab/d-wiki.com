@@ -1,5 +1,5 @@
 <template>
-  <NuxtImg
+  <NuxtPicture
     :src="props.src"
     :alt="props.alt"
     :width="props.width"
@@ -37,6 +37,8 @@ const props = defineProps<Props>();
 
   > ::v-deep(img) {
     @include box(100%);
+
+    object-fit: cover;
   }
 }
 </style>

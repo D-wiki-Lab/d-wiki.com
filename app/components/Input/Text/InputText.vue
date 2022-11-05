@@ -1,37 +1,41 @@
 <template>
-  <label class="ArticleEditContent">
-    <span class="ArticleEditContent-label">
-      {{ props.title }}
+  <label class="InputText">
+    <span class="InputText-label">
+      {{ props.label }}
     </span>
-    <textarea
-      :value="modelValue"
-      placeholder="ここに本文を入力"
-      class="ArticleEditContent-input"
-      @change="changeBodyHandler"
-    />
+    <input
+      :type="props.type"
+      class="InputText-input"
+      @change="changeTextHandler"
+    >
   </label>
 </template>
 
 <script lang="ts" setup>
 interface Props {
-  title: string,
+  label: string,
   modelValue: string,
+  type?: string,
 }
 
 interface Emits {
   (e: 'update:modelValue', $event: string): void
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  label: 'Label',
+  modelValue: '',
+  type: 'text',
+});
 const emits = defineEmits<Emits>();
 
-const changeBodyHandler = (e: Event) => {
+const changeTextHandler = (e: Event) => {
   emits('update:modelValue', (e.target as HTMLInputElement).value || '');
 }
 </script>
 
 <style lang="scss" scoped>
-.ArticleEditContent {
+.InputText {
   display: block;
 
   > &-label {
@@ -41,18 +45,13 @@ const changeBodyHandler = (e: Event) => {
   }
 
   > &-input {
-    @include box(100%, 280px, 16px, 20px, 16px, 20px);
+    @include box(100%, null, 16px, 20px, 16px, 20px);
     @include box-mg(8px);
     @include font(null, 300, 1.6);
 
     display: block;
     border: solid 1px var(--color-bar-primary);
     border-radius: 4px;
-    resize: none;
-
-    &::placeholder {
-      color: var(--color-text-placeholder);
-    }
   }
 }
 </style>

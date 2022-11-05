@@ -8,7 +8,10 @@ export const WalletAstarNetworkType = {
 } as const;
 export type WalletAstarNetworkType = typeof WalletAstarNetworkType[keyof typeof WalletAstarNetworkType];
 
-export type WalletNetworkType = WalletAstarNetworkType;
+export const WalletNetworkType = {
+  ...WalletAstarNetworkType,
+} as const;
+export type WalletNetworkType = typeof WalletNetworkType[keyof typeof WalletNetworkType];
 
 export type Wallet = {
   address: string[];
