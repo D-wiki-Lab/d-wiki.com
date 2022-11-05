@@ -3,8 +3,8 @@
     <ul class="HistoryPreview-list">
       <HistoryPreviewItem
         v-for="item in props.history"
+        v-bind="item"
         :key="item.id"
-        :history="item"
       />
     </ul>
   </div>

@@ -1,39 +1,49 @@
 <template>
   <li class="HistoryPreviewItem">
     <p class="HistoryPreviewItem-date">
-      {{ props.history.createdAt }}
+      {{ createdAtDate }}
     </p>
     <div class="HistoryPreviewItem-cont">
       <UserIcon
-        v-bind="profileImage(props.history.userId)"
+        v-bind="profileImage"
       />
       <p class="HistoryPreviewItem-nm">
-        {{ props.history.userId }}
+        {{ props.userId }}
       </p>
     </div>
   </li>
 </template>
 
 <script lang="ts" setup>
+import dayjs from 'dayjs';
+
 import Image from '~/models/image';
-import { History } from '~/types/history';
 import { ImageFitType, ImageLoadingType } from '~/types/image';
+import {ProjectContent, ProjectLink} from "~/types/project";
 
 interface Props {
-  history: History,
+  id: string;
+  userId: string;
+  projectId: string;
+  contents: ProjectContent[];
+  links: ProjectLink[];
+  createdAt: number;
 }
 
 const props = defineProps<Props>();
 
-const profileImage = (userId: string) => new Image(
-  `/user/${userId}/profile-image.jpg`,
-  `${userId}'s Profile Image`,
+const createdAtDate = computed(() =>
+  dayjs(props.createdAt).format('YYYY.MM.DD HH:mm')
+);
+const profileImage = computed(() => new Image(
+  `/user/${props.userId}/profile-image.jpg`,
+  `${props.userId}'s Profile Image`,
   36,
   36,
   undefined,
   ImageFitType.cover,
   ImageLoadingType.lazy,
-);
+));
 </script>
 
 <style lang="scss" scoped>
@@ -44,7 +54,7 @@ const profileImage = (userId: string) => new Image(
   @include box-pd(12px, null, 12px);
 
   > &-date {
-    @include box(132px);
+    @include box(144px);
     @include box-mg(null, 8px);
   }
 
