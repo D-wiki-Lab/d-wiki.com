@@ -9,10 +9,13 @@
 
   // テキストで使用する色
   --color-text-primary: var(--color-parimary-main);
+  --color-text-placeholder: #aaaaaa;
 
   // ボタンで使用する色
   --color-button-primary: var(--color-parimary-main);
   --color-button-primary-text: var(--color-white);
+  --color-button-secondary: var(--color-white);
+  --color-button-secondary-text: var(--color-parimary-main);
 
   // 背景で使用する色
   --color-bg-primary: var(--color-white);

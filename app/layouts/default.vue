@@ -30,12 +30,12 @@
 
   > &-section {
     @include flex(center);
-    @include box-pd(64px, 20px, 40px, 20px);
+    @include box-pd(null, 20px, 40px, 20px);
 
     > #{$root}-container {
       @include box(100%);
 
-      max-width: 1400px;
+      max-width: 880px;
     }
   }
 }

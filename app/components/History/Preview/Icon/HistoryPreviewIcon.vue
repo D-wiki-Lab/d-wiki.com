@@ -54,7 +54,7 @@ const profileImage = (userId: string) => new Image(
     @include flex(null, center);
 
     > #{$root}-item {
-      & + * {
+      + * {
         @include box-mg(null, null, null, -8px);
       }
 
