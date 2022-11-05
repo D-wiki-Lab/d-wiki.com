@@ -1,7 +1,7 @@
 <template>
   <article class="PageWikiWikiId">
     <ArticleTitle
-      :isLogin="true"
+      :isLogin="false"
       :text="project.name"
     />
 

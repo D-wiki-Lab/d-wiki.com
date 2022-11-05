@@ -3,10 +3,7 @@
     <h1 class="ArticleTitle-txt">
       {{ props.text }}
     </h1>
-    <div
-      v-if="props.isLogin"
-      class="ArticleTitle-nav"
-    >
+    <div class="ArticleTitle-nav">
       <NuxtLink
         to="history/"
         class="ArticleTitle-btn"
@@ -18,6 +15,7 @@
         />
       </NuxtLink>
       <NuxtLink
+        v-if="props.isLogin"
         to="edit/"
         class="ArticleTitle-btn"
       >
