@@ -1,11 +1,11 @@
 <template>
   <NuxtPicture
-    :src="props.src"
-    :alt="props.alt"
-    :width="props.width"
-    :height="props.height"
-    :fit="props.fit"
-    :loading="props.loading"
+    :src="src"
+    :alt="alt"
+    :width="width"
+    :height="height"
+    :fit="fit"
+    :loading="loading"
     class="UserIcon"
   />
 </template>

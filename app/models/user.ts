@@ -1,27 +1,21 @@
 import Image from './image';
-import {Image as ImageType, ImageFitType, ImageLoadingType} from '~/types/image';
-import { User as UserType, UserPublic } from '~/types/user';
-import { Wallet } from '~/types/wallet';
+import { Image as ImageType, ImageFitType, ImageLoadingType } from '~/types/image';
+import { User as UserType } from '~/types/user';
 
-type UserClass = UserType & {
-  public: UserPublic;
-};
+type UserClass = UserType & {};
 
 export default class User implements UserClass {
   id: string;
   name: string;
-  wallet: Wallet[];
   profileImage: Omit<ImageType, 'width' | 'height'>;
 
   constructor(
     id: string,
     name: string,
-    wallet?: Wallet[],
     profileImage?: Omit<ImageType, 'width' | 'height'>
   ) {
     this.id = id;
     this.name = name;
-    this.wallet = wallet || [];
 
     if (profileImage) {
       this.profileImage = profileImage;
@@ -40,12 +34,5 @@ export default class User implements UserClass {
 
       this.profileImage = _profileImage;
     }
-  }
-
-  get public(): UserPublic {
-    const user: Partial<UserType> = {...this};
-    delete user.wallet;
-
-    return user as UserPublic;
   }
 }

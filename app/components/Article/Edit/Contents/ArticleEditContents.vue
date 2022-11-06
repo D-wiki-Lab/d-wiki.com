@@ -1,7 +1,7 @@
 <template>
   <div class="ArticleEditContents">
     <ArticleEditContent
-      v-for="content in props.contents"
+      v-for="content in contents"
       v-model="content.body"
       :key="content.id"
       :title="content.title"

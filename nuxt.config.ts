@@ -32,9 +32,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    apiSecret: '',
     public: {
-      apiBase: '',
+      web3Message: '',
+      web3Password: '',
     },
   },
 

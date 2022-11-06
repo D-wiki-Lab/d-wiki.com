@@ -5,12 +5,12 @@
     </p>
     <div class="HistoryPreviewItem-cont">
       <UserIcon
-        v-bind="props.user.profileImage"
+        v-bind="user.profileImage"
         :width="36"
         :height="36"
       />
       <p class="HistoryPreviewItem-nm">
-        {{ props.user.name }}
+        {{ user.name }}
       </p>
     </div>
   </li>
@@ -20,12 +20,12 @@
 import dayjs from 'dayjs';
 
 import { ProjectContent, ProjectLink } from '~/types/project';
-import { UserPublic } from '~/types/user';
+import { User } from '~/types/user';
 
 interface Props {
   id: string;
   userId: string;
-  user: UserPublic,
+  user: User,
   projectId: string;
   contents: ProjectContent[];
   links: ProjectLink[];

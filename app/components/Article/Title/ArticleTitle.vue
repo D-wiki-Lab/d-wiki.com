@@ -1,11 +1,11 @@
 <template>
   <div class="ArticleTitle">
     <h1 class="ArticleTitle-txt">
-      {{ props.text }}
+      {{ text }}
     </h1>
     <div class="ArticleTitle-nav">
       <NuxtLink
-        to="history/"
+        to="./history/"
         class="ArticleTitle-btn"
       >
         <IconHistory
@@ -15,8 +15,8 @@
         />
       </NuxtLink>
       <NuxtLink
-        v-if="props.isLogin"
-        to="edit/"
+        v-if="isLogin"
+        to="./edit/"
         class="ArticleTitle-btn"
       >
         <IconEdit

@@ -7,104 +7,47 @@
       {{ project.name }}
     </h1>
 
-    <form
+    <div
       class="PageWikiWikiIdEdit-cont"
-      @submit.prevent.once="submitHandler"
     >
       <ArticleEdit
-        :contents="project.body.contents"
-        :links="project.body.links"
+        v-bind="project"
+        @submit="submitHandler"
+        @cancel="cancelHandler"
       />
-      <div class="PageWikiWikiIdEdit-btnWrap">
-        <ButtonDefault>
-          Publish
-        </ButtonDefault>
-        <ButtonDefault
-          to="../"
-          tag="NuxtLink"
-          variant="outlined"
-        >
-          Cancel
-        </ButtonDefault>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Project from '~/models/project';
-import ProjectContent from '~/models/project-content';
-import ProjectLink from '~/models/project-link';
+import { useProjectStore } from '~/stores/project';
+import { Project } from '~/types/project';
 
-const project = reactive(new Project(
-  'd-wiki',
-  'D-wiki',
-  undefined,
-  1,
-  [
-    new ProjectContent(
-      'content-0',
-      'About',
-      'About の本文',
-      0,
-    ),
-    new ProjectContent(
-      'content-1',
-      'Mint Info',
-      'Mint Info の本文',
-      1,
-    ),
-    new ProjectContent(
-      'content-2',
-      'Team',
-      'Team の本文',
-      2,
-    ),
-    new ProjectContent(
-      'content-3',
-      'Roadmap',
-      'Roadmap の本文',
-      3,
-    ),
-    new ProjectContent(
-      'content-4',
-      'Utility',
-      'Utility の本文',
-      4,
-    ),
-    new ProjectContent(
-      'content-5',
-      'Other',
-      'Other の本文',
-      5,
-    ),
-  ],
-  [
-    new ProjectLink(
-      'Site',
-      'https://d-wiki.com/',
-      0,
-    ),
-    new ProjectLink(
-      'Twitter',
-      'https://twitter.com/',
-      1,
-    ),
-    new ProjectLink(
-      '',
-      '',
-      2,
-    ),
-    new ProjectLink(
-      '',
-      '',
-      3,
-    ),
-  ]
-));
+definePageMeta({
+  middleware: ['auth', 'auth-check'],
+});
 
-const submitHandler = () => {
-  console.log('Submit!');
+const route = useRoute();
+const router = useRouter();
+const projectStore = useProjectStore();
+
+const result = await projectStore.setProject(route.params.wikiId as string);
+if (!result) {
+  router.push('/');
+}
+const project = projectStore.project;
+
+const submitHandler = async (form: Project) => {
+  const project = await projectStore.updateProject(form);
+  if (!project) {
+    throw new Error('Update project error');
+  }
+  router.push('../');
+};
+
+const cancelHandler = () => {
+  const router = useRouter();
+  router.back();
 };
 </script>
 
@@ -125,17 +68,6 @@ const submitHandler = () => {
 
   > &-cont {
     @include box-mg(40px);
-
-    > #{$root}-btnWrap {
-      @include flex(center);
-      @include box-mg(48px);
-
-      gap: 12px;
-
-      > .ButtonDefault {
-        @include box(104px, 40px);
-      }
-    }
   }
 }
 </style>

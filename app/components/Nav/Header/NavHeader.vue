@@ -14,13 +14,13 @@
         >
           <IconUser :width="32" :height="32" />
         </NuxtLink>
-        <NuxtLink
+        <button
           v-else
-          to="/add-wallet/"
           class="NavHeader-wallet -is-yet"
+          @click="connectWalletHandler"
         >
           CONNECT WALLET
-        </NuxtLink>
+        </button>
       </div>
     </div>
   </header>
@@ -31,7 +31,16 @@ interface Props {
   isLogin: boolean,
 }
 
+interface Emits {
+  (e: 'login'): void
+}
+
 const props = defineProps<Props>();
+const emits = defineEmits<Emits>();
+
+const connectWalletHandler = () => {
+  emits('login');
+};
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
   <div class="HistoryPreview">
     <ul class="HistoryPreview-list">
       <HistoryPreviewItem
-        v-for="item in props.history"
+        v-for="item in history"
         v-bind="item"
         :key="item.id"
       />

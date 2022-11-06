@@ -1,10 +1,12 @@
 <template>
   <label class="InputText">
     <span class="InputText-label">
-      {{ props.label }}
+      {{ label }}
     </span>
     <input
-      :type="props.type"
+      :value="modelValue"
+      :type="type"
+      :disabled="disabled"
       class="InputText-input"
       @change="changeTextHandler"
     >
@@ -16,6 +18,7 @@ interface Props {
   label: string,
   modelValue: string,
   type?: string,
+  disabled?: boolean,
 }
 
 interface Emits {
@@ -26,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   label: 'Label',
   modelValue: '',
   type: 'text',
+  disabled: false,
 });
 const emits = defineEmits<Emits>();
 

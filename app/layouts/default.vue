@@ -1,6 +1,9 @@
 <template>
   <div class="LayoutDefault">
-    <NavHeader :isLogin="false" />
+    <NavHeader
+      :isLogin="meStore.isVerified"
+      @login="loginHandler"
+    />
 
     <div class="LayoutDefault-section">
       <div class="LayoutDefault-container">
@@ -11,6 +14,26 @@
     <NavFooter />
   </div>
 </template>
+
+<script lang="ts" setup>
+import { useMeStore } from '~/stores/me';
+
+const meStore = useMeStore();
+
+const loginHandler = async () => {
+  const id = await meStore.walletIsVerified();
+  if (!id) {
+    throw new Error('Id don\'t find');
+  }
+
+  const me = await meStore.getMe(id);
+  if (me) {
+    meStore.login(me);
+  } else {
+    meStore.register(id);
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 .LayoutDefault {

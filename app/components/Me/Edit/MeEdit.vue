@@ -1,53 +1,108 @@
 <template>
-  <div class="MeEdit">
-    <div class="MeEdit-icn-and-nm">
-      <InputIcon
-        v-model="profileImage.src"
-        v-bind="profileImage"
-      />
+  <form
+    class="MeEdit"
+    @submit.prevent="submitHandler"
+  >
+    <div class="MeEdit-cont">
+      <div class="MeEdit-icn-and-nm">
+        <InputIcon
+          v-model="form.profileImage.src"
+          v-bind="profileImage"
+        />
+        <InputText
+          v-model="form.name"
+          label="Name"
+        />
+      </div>
       <InputText
-        v-model="name"
-        label="Name"
+        v-model="form.id"
+        :disabled="true"
+        label="Wallet Address"
       />
     </div>
-    <InputText
-      v-model="wallet[0]['address'][0]"
-      label="Wallet Address"
-    />
-  </div>
+    <div class="MeEdit-btnWrap">
+      <ButtonDefault
+        :disabled="false"
+      >
+        Save
+      </ButtonDefault>
+      <ButtonDefault
+        variant="outlined"
+        type="button"
+        @click="cancelHandler"
+      >
+        Cancel
+      </ButtonDefault>
+    </div>
+  </form>
 </template>
 
 <script lang="ts" setup>
-import { Wallet } from '~/types/wallet';
 import { Image } from '~/types/image';
+import { User } from '~/types/user';
 
 interface Props {
+  id: string,
   name: string,
-  wallet: Wallet[],
   profileImage: Omit<Image, 'width' | 'height'>,
 }
 
+interface Emits {
+  (e: 'submit', $event: User): void,
+  (e: 'cancel'): void,
+}
+
 const props = defineProps<Props>();
+const emits = defineEmits<Emits>();
+
+const form = reactive({
+  id: props.id,
+  name: props.name,
+  profileImage: props.profileImage,
+});
+
+const submitHandler = () => {
+  emits('submit', form);
+};
+
+const cancelHandler = () => {
+  emits('cancel');
+};
 </script>
 
 <style lang="scss" scoped>
 .MeEdit {
-  > &-icn-and-nm {
-    @include flex(null, center);
+  $root: &;
 
-    gap: 32px;
+  > &-cont {
+    > #{$root}-icn-and-nm {
+      @include flex(null, center);
 
-    > .InputIcon {
-      @include box(160px, 160px);
+      gap: 32px;
+
+      > .InputIcon {
+        @include box(160px, 160px);
+      }
+
+      > .InputText {
+        flex: 1;
+      }
     }
 
     > .InputText {
-      flex: 1;
+      @include box-mg(40px);
     }
   }
 
-  > .InputText {
-    @include box-mg(40px);
+  > &-btnWrap {
+    @include flex(center);
+    @include box-mg(48px);
+
+    gap: 12px;
+
+    > .ButtonDefault {
+      @include box(104px, 40px);
+    }
   }
 }
 </style>

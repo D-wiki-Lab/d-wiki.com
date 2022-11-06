@@ -24,5 +24,5 @@ export type Project = {
     contents: ProjectContent[];
     links: ProjectLink[];
   }
-  history: History[];
+  history?: History[];
 };

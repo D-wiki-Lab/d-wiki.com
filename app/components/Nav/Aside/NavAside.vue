@@ -1,6 +1,9 @@
 <template>
   <aside class="NavAside">
-    <ContentToc :toc="props.toc" />
+    <ContentToc
+      v-if="toc.length"
+      :toc="toc"
+    />
   </aside>
 </template>
 

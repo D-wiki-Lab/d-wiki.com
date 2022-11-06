@@ -5,7 +5,7 @@
     </p>
     <ul class="HistoryPreviewIcon-list">
       <li
-        v-for="item in props.history"
+        v-for="item in history"
         :key="item.id"
         class="HistoryPreviewIcon-item"
       >

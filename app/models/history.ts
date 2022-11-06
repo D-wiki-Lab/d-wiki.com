@@ -1,13 +1,13 @@
 import { History as HistoryType } from '~/types/history';
 import { ProjectContent, ProjectLink } from '~/types/project';
-import { UserPublic } from '~/types/user';
+import { User } from '~/types/user';
 
 type HistoryClass = HistoryType & {};
 
 export default class History implements HistoryClass {
   id: string;
   userId: string;
-  user: UserPublic;
+  user: User;
   projectId: string;
   contents: ProjectContent[];
   links: ProjectLink[];
@@ -16,7 +16,7 @@ export default class History implements HistoryClass {
   constructor(
     id: string,
     userId: string,
-    user: UserPublic,
+    user: User,
     projectId: string,
     contents: ProjectContent[] | undefined,
     links: ProjectLink[] | undefined,

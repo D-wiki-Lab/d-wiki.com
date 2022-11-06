@@ -1,11 +1,16 @@
 <template>
   <div class="LayoutWiki">
-    <NavHeader :isLogin="false" />
+    <NavHeader
+      :isLogin="meStore.isVerified"
+      @login="loginHandler"
+    />
 
     <div class="LayoutWiki-section">
       <div class="LayoutWiki-container">
         <div class="LayoutWiki-first">
-          <NavAside :toc="toc" />
+          <ClientOnly>
+            <NavAside :toc="toc || []" />
+          </ClientOnly>
         </div>
         <div class="LayoutWiki-second">
           <slot />
@@ -19,17 +24,30 @@
 </template>
 
 <script lang="ts" setup>
-import Toc from '~/models/toc';
+import { useMeStore } from '~/stores/me';
+import { User } from '~/types/user';
+import {useProjectStore} from "~/stores/project";
 
-const toc: Toc[] = [
-  new Toc('content-0', 'About'),
-  new Toc('content-1', 'Mint Info'),
-  new Toc('content-2', 'Team'),
-  new Toc('content-3', 'Roadmap'),
-  new Toc('content-4', 'Utility'),
-  new Toc('content-5', 'Other'),
-  new Toc('links', 'Links'),
-];
+const meStore = useMeStore();
+const projectStore = useProjectStore();
+
+const toc = computed(() => projectStore.projectToc);
+
+const loginHandler = async () => {
+  const id = await meStore.walletIsVerified();
+  if (!id) {
+    throw new Error('Id don\'t find');
+  }
+
+  const meCookie = useCookie<User>('me');
+  const me = await meStore.getMe(id);
+  if (me) {
+    meCookie.value = me;
+    meStore.login(me);
+  } else {
+    meStore.register(id);
+  }
+};
 </script>
 
 <style lang="scss" scoped>
