@@ -16,21 +16,23 @@
       Links
     </h2>
     <ul class="lintList">
-      <li
-        v-for="link in links"
-        :key="link.order"
-      >
-        <IconLink
-          :width="20"
-          :height="20"
-        />
-        <span>
+      <template v-for="link in links">
+        <li
+          v-if="link.text && link.href"
+          :key="link.order"
+        >
+          <IconLink
+            :width="20"
+            :height="20"
+          />
+          <span>
           {{ link.text }}
         </span>
-        <NuxtLink :href="link.href" target="_blank">
-          {{ link.href }}
-        </NuxtLink>
-      </li>
+          <NuxtLink :href="link.href" target="_blank">
+            {{ link.href }}
+          </NuxtLink>
+        </li>
+      </template>
     </ul>
   </div>
 </template>

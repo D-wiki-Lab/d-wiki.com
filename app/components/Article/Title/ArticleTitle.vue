@@ -5,7 +5,7 @@
     </h1>
     <div class="ArticleTitle-nav">
       <NuxtLink
-        to="history/"
+        to="./history/"
         class="ArticleTitle-btn"
       >
         <IconHistory
@@ -16,7 +16,7 @@
       </NuxtLink>
       <NuxtLink
         v-if="isLogin"
-        to="edit/"
+        to="./edit/"
         class="ArticleTitle-btn"
       >
         <IconEdit
