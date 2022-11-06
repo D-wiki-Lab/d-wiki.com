@@ -27,8 +27,9 @@ import Image from "~/models/image";
 import {ImageFitType, ImageLoadingType} from "~/types/image";
 
 definePageMeta({
+  middleware: ['auth-check'],
   layout: 'wiki',
-});
+})
 
 const project = new Project(
   'd-wiki',

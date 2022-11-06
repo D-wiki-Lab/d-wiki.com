@@ -36,6 +36,10 @@ import Project from '~/models/project';
 import ProjectContent from '~/models/project-content';
 import ProjectLink from '~/models/project-link';
 
+definePageMeta({
+  middleware: ['auth-check'],
+});
+
 const project = reactive(new Project(
   'd-wiki',
   'D-wiki',

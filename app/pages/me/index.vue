@@ -4,58 +4,34 @@
       My Page
     </p>
 
-    <form
-      class="PageMe-cont"
-      @submit.prevent.once="submitHandler"
-    >
-      <MeEdit
-        :id="me.id"
-        :name="me.name"
-        :profileImage="me.profileImage"
-      />
-      <div class="PageMe-btnWrap">
-        <ButtonDefault
-          disabled="disabled"
-        >
-          Save
-        </ButtonDefault>
-        <ButtonDefault
-          variant="outlined"
-          type="reset"
-          @click="resetHandler"
-        >
-          Cancel
-        </ButtonDefault>
-      </div>
-    </form>
+    <MeEdit
+      :id="meStore.id"
+      :name="meStore.name"
+      :profileImage="meStore.profileImage"
+      @submit="submitHandler"
+      @cancel="cancelHandler"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import Image from '~/models/image';
 import User from '~/models/user';
-import { ImageFitType, ImageLoadingType } from '~/types/image';
+import { useMeStore } from '~/stores/me';
 
-const me = reactive(new User(
-  'official',
-  'D-wiki',
-  new Image(
-    '/user/official/profile-image.jpg',
-    'official\'s Profile Image',
-    160,
-    160,
-    undefined,
-    ImageFitType.cover,
-    ImageLoadingType.lazy,
-  ),
-));
+definePageMeta({
+  middleware: ['auth', 'auth-check'],
+});
 
-const submitHandler = () => {
+const meStore = useMeStore();
+
+const submitHandler = (form: User) => {
   console.log('Submit!');
+  console.log(form)
 };
 
-const resetHandler = () => {
-  console.log('Reset!');
+const cancelHandler = () => {
+  const router = useRouter();
+  router.back();
 };
 </script>
 
@@ -69,19 +45,8 @@ const resetHandler = () => {
     @include font(32px, 700, 1.2);
   }
 
-  > &-cont {
+  > .MeEdit {
     @include box-mg(40px);
-
-    > #{$root}-btnWrap {
-      @include flex(center);
-      @include box-mg(48px);
-
-      gap: 12px;
-
-      > .ButtonDefault {
-        @include box(104px, 40px);
-      }
-    }
   }
 }
 </style>

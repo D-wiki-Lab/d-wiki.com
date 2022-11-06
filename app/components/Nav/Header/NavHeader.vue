@@ -27,52 +27,19 @@
 </template>
 
 <script lang="ts" setup>
-import Web3 from 'web3';
-
-import metamask from '~/utils/metamask';
-
 interface Props {
   isLogin: boolean,
 }
 
+interface Emits {
+  (e: 'login'): void
+}
+
 const props = defineProps<Props>();
+const emits = defineEmits<Emits>();
 
-const runtimeConfig = useRuntimeConfig()
-
-const connectWalletHandler = async () => {
-  const provider = metamask.getProvider();
-  const web3 = new Web3(provider);
-
-  const [address] = await web3.eth.requestAccounts();
-
-  const message = runtimeConfig.public.web3Message;
-  const password = runtimeConfig.public.web3Password;
-
-  const signature = await web3.eth.personal.sign(
-    message,
-    address,
-    password
-  );
-
-  const { data, error } = await useFetch<{ isVerified: boolean; }>(
-    '/api/metamask/verify',
-    {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify({ message, address, signature }),
-    });
-
-  if (error.value) {
-    throw error;
-  }
-
-  if (!data.value?.isVerified) {
-    throw new Error('Signature isn\'t verified');
-  }
-
-  console.log(data)
+const connectWalletHandler = () => {
+  emits('login');
 };
 </script>
 

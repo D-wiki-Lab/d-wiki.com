@@ -1,6 +1,9 @@
 <template>
   <div class="LayoutWiki">
-    <NavHeader :isLogin="false" />
+    <NavHeader
+      :isLogin="meStore.isVerified"
+      @login="loginHandler"
+    />
 
     <div class="LayoutWiki-section">
       <div class="LayoutWiki-container">
@@ -20,6 +23,10 @@
 
 <script lang="ts" setup>
 import Toc from '~/models/toc';
+import { useMeStore } from '~/stores/me';
+import { User } from '~/types/user';
+
+const meStore = useMeStore();
 
 const toc: Toc[] = [
   new Toc('content-0', 'About'),
@@ -30,6 +37,22 @@ const toc: Toc[] = [
   new Toc('content-5', 'Other'),
   new Toc('links', 'Links'),
 ];
+
+const loginHandler = async () => {
+  const id = await meStore.walletIsVerified();
+  if (!id) {
+    throw new Error('Id don\'t find');
+  }
+
+  const meCookie = useCookie<User>('me');
+  const me = await meStore.getMe(id);
+  if (me) {
+    meCookie.value = me;
+    meStore.login(me);
+  } else {
+    meStore.register(id);
+  }
+};
 </script>
 
 <style lang="scss" scoped>

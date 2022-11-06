@@ -20,6 +20,10 @@ import ProjectLink from '~/models/project-link';
 import Image from "~/models/image";
 import {ImageFitType, ImageLoadingType} from "~/types/image";
 
+definePageMeta({
+  middleware: ['auth-check'],
+});
+
 const project = new Project(
   'd-wiki',
   'D-wiki',
