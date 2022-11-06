@@ -9,8 +9,8 @@
       @submit.prevent.once="submitHandler"
     >
       <MeEdit
+        :id="me.id"
         :name="me.name"
-        :wallet="me.wallet"
         :profileImage="me.profileImage"
       />
       <div class="PageMe-btnWrap">
@@ -34,20 +34,11 @@
 <script lang="ts" setup>
 import Image from '~/models/image';
 import User from '~/models/user';
-import Wallet from '~/models/wallet';
 import { ImageFitType, ImageLoadingType } from '~/types/image';
-import { WalletChainType, WalletNetworkType } from '~/types/wallet';
 
 const me = reactive(new User(
   'official',
   'D-wiki',
-  [
-    new Wallet(
-      ['wallet-address'],
-      WalletChainType.ASTR,
-      WalletNetworkType.astarNetwork,
-    ),
-  ],
   new Image(
     '/user/official/profile-image.jpg',
     'official\'s Profile Image',

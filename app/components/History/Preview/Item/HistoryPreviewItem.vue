@@ -20,12 +20,12 @@
 import dayjs from 'dayjs';
 
 import { ProjectContent, ProjectLink } from '~/types/project';
-import { UserPublic } from '~/types/user';
+import { User } from '~/types/user';
 
 interface Props {
   id: string;
   userId: string;
-  user: UserPublic,
+  user: User,
   projectId: string;
   contents: ProjectContent[];
   links: ProjectLink[];

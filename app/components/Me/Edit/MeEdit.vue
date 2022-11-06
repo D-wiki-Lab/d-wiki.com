@@ -11,19 +11,19 @@
       />
     </div>
     <InputText
-      v-model="wallet[0]['address'][0]"
+      v-model="id"
       label="Wallet Address"
+      disabled="disabled"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Wallet } from '~/types/wallet';
 import { Image } from '~/types/image';
 
 interface Props {
+  id: string,
   name: string,
-  wallet: Wallet[],
   profileImage: Omit<Image, 'width' | 'height'>,
 }
 
