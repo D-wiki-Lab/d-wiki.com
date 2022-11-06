@@ -16,7 +16,7 @@
 interface Props {
   tag?: 'button' | 'NuxtLink',
   variant?: 'contained' | 'outlined',
-  disabled?: 'disabled',
+  disabled?: boolean,
 }
 
 interface Emits {
@@ -26,7 +26,7 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   tag: 'button',
   variant: 'contained',
-  disabled: undefined
+  disabled: false,
 });
 const emits = defineEmits<Emits>();
 
