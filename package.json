@@ -17,6 +17,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.3",
     "dayjs": "^1.11.6",
-    "destyle.css": "^3.0.2"
+    "destyle.css": "^3.0.2",
+    "web3": "^1.8.0"
   }
 }
