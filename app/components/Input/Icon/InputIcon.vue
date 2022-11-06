@@ -6,12 +6,12 @@
       @change="changeFileHandler"
     >
     <UserIcon
-      :src="props.modelValue"
-      :alt="props.alt"
-      :width="props.width"
-      :height="props.height"
-      :fit="props.fit"
-      :loading="props.loading"
+      :src="modelValue"
+      :alt="alt"
+      :width="width"
+      :height="height"
+      :fit="fit"
+      :loading="loading"
     />
   </label>
 </template>

@@ -6,8 +6,8 @@
 
     <div class="ArticleEditLinks-cont">
       <ArticleEditLink
-        v-for="(link, i) in props.links"
-        v-model="props.links[i]"
+        v-for="(link, i) in links"
+        v-model="links[i]"
         :key="link.href"
       />
     </div>

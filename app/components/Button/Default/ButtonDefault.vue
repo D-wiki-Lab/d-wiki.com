@@ -2,7 +2,7 @@
   <component
     v-bind="$attrs"
     :is="componentIs"
-    :disabled="props.disabled"
+    :disabled="disabled"
     :class="['ButtonDefault', ...classes]"
     @click="clickHandler"
   >

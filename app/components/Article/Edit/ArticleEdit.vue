@@ -1,8 +1,8 @@
 <template>
   <div class="ArticleEdit">
-    <ArticleEditContents :contents="props.contents" />
+    <ArticleEditContents :contents="contents" />
 
-    <ArticleEditLinks :links="props.links" />
+    <ArticleEditLinks :links="links" />
   </div>
 </template>
 

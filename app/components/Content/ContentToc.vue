@@ -1,7 +1,7 @@
 <template>
   <ul class="ContentToc">
     <li
-      v-for="item in props.toc"
+      v-for="item in toc"
       :key="item.id"
       class="ContentToc-item"
     >

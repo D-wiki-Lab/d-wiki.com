@@ -1,10 +1,10 @@
 <template>
   <label class="InputText">
     <span class="InputText-label">
-      {{ props.label }}
+      {{ label }}
     </span>
     <input
-      :type="props.type"
+      :type="type"
       class="InputText-input"
       @change="changeTextHandler"
     >

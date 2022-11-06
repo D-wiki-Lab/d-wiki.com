@@ -1,7 +1,7 @@
 <template>
   <label class="ArticleEditContent">
     <span class="ArticleEditContent-label">
-      {{ props.title }}
+      {{ title }}
     </span>
     <textarea
       :value="modelValue"

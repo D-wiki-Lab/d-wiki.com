@@ -1,6 +1,6 @@
 <template>
   <aside class="NavAside">
-    <ContentToc :toc="props.toc" />
+    <ContentToc :toc="toc" />
   </aside>
 </template>
 
